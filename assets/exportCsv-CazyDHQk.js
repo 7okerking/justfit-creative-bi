@@ -1,0 +1,3 @@
+function L(e,i,a){const d="\uFEFF",p=e.map(n=>s(n.header)).join(","),l=i.map(n=>e.map(o=>{const r=n[o.key],h=o.formatter?o.formatter(r):String(r??"");return s(h)}).join(",")),m=d+[p,...l].join(`\r
+`),u=new Blob([m],{type:"text/csv;charset=utf-8;"}),c=URL.createObjectURL(u),b=new Date().toISOString().slice(0,10).replace(/-/g,""),f=a??`export_${b}.csv`,t=document.createElement("a");t.href=c,t.download=f,document.body.appendChild(t),t.click(),document.body.removeChild(t),URL.revokeObjectURL(c)}function s(e){return e.includes(",")||e.includes('"')||e.includes(`
+`)?`"${e.replace(/"/g,'""')}"`:e}export{L as e};
